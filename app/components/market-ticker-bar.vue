@@ -21,73 +21,66 @@
       </div>
     </div>
     <div
-      class="mb-1 flex w-full flex-col overflow-hidden rounded-lg bg-[#181A20]"
+      class="mb-1 flex w-full flex-col overflow-hidden rounded-lg bg-[#181A20] px-3 py-2 md:flex-row"
     >
-      <div class="px-4 py-3">
-        <div
-          class="flex flex-col items-center justify-between gap-4 text-14 md:flex-row"
+      <div class="flex items-center gap-2">
+        <button
+          class="flex items-center justify-center rounded-[6px] border border-gray-700 !p-[2px] text-yellow-500 transition hover:text-yellow-400"
         >
-          <div class="flex items-center gap-2">
-            <button
-              class="flex items-center justify-center rounded-[6px] border border-gray-700 !p-[2px] text-yellow-500 transition hover:text-yellow-400"
-            >
-              <Icon name="mdi:star" class="h-4 w-4 p-0" />
-            </button>
+          <Icon name="mdi:star" class="h-4 w-4 p-0" />
+        </button>
 
+        <div class="flex items-center gap-2">
+          <div class="flex h-6 w-6 items-center justify-center rounded-full">
+            <img src="/img/B.png" alt="Binance Futures" class="object-cover" />
+          </div>
+          <div>
             <div class="flex items-center gap-2">
-              <div
-                class="flex h-6 w-6 items-center justify-center rounded-full"
-              >
-                <img
-                  src="/img/B.png"
-                  alt="Binance Futures"
-                  class="object-cover"
-                />
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="text-xl text-white">BTCUSDT</span>
-                  <span class="text-xs text-gray-500">Perp</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="ml-4">
-              <div class="text-20 text-white">91,447.5</div>
-              <div class="min-w-max text-12 text-red-500"
-                >-$3,349.19 -3.53%</div
-              >
+              <span class="text-xl text-white">BTCUSDT</span>
+              <span class="text-xs text-gray-500">Perp</span>
             </div>
           </div>
+        </div>
+
+        <div class="ml-4">
+          <div class="text-20 text-white">{{ formatPrice(currentPrice) }}</div>
           <div
-            class="flex max-w-[450px] items-center gap-6 pb-1 text-12 xl:gap-8"
+            class="min-w-max text-12"
+            :class="getPriceChangeClass(priceChangePercent)"
           >
-            <div
-              ref="statsRef"
-              class="flex max-w-[450px] items-center justify-center gap-8 whitespace-nowrap px-4 py-1 lg:justify-start"
-            >
-              <div class="flex items-center gap-8">
-                <div>
-                  <div class="text-11 text-gray-500">24h Low</div>
-                  <div class="font-medium text-white">89,012.0</div>
-                </div>
-                <div>
-                  <div class="text-11 text-gray-500">24h Volume(BTC)</div>
-                  <div class="font-medium text-white">276,315.157</div>
-                </div>
-                <div>
-                  <div class="text-11 text-gray-500">24h Volume(USDT)</div>
-                  <div class="font-medium text-white">25,400,578,194.45</div>
-                </div>
-                <div>
-                  <div class="text-11 text-gray-500">Open Interest(USDT)</div>
-                  <div class="font-medium text-white">9,324,415,626.55</div>
-                </div>
+            {{ ticker.priceChange }} - {{ priceChangePercent }}%
+          </div>
+        </div>
+      </div>
+      <div class="flex max-w-[450px] items-center gap-6 pb-1 text-12 xl:gap-8">
+        <div
+          ref="statsRef"
+          class="flex max-w-[450px] items-center justify-center gap-8 whitespace-nowrap px-4 py-1 lg:justify-start"
+        >
+          <div class="flex items-center gap-8">
+            <div>
+              <div class="text-11 text-gray-500">24h Low</div>
+              <div class="font-medium text-white">
+                {{ formatPrice(ticker.low) }}
               </div>
-              <!-- 
-              <button @click="scrollRight" class="flex-shrink-0 text-gray-500">
-                <Icon name="mdi:chevron-right" class="h-5 w-5" />
-              </button> -->
+            </div>
+            <div>
+              <div class="text-11 text-gray-500">24h Volume(BTC)</div>
+              <div class="font-medium text-white">{{
+                formatPrice(ticker.volume)
+              }}</div>
+            </div>
+            <div>
+              <div class="text-11 text-gray-500">24h Volume(USDT)</div>
+              <div class="font-medium text-white">{{
+                formatPrice(ticker.quoteVolume)
+              }}</div>
+            </div>
+            <div>
+              <div class="text-11 text-gray-500">Open Interest(BTC)</div>
+              <div class="font-medium text-white">{{
+                formatPrice(ticker.open)
+              }}</div>
             </div>
           </div>
         </div>
@@ -115,7 +108,7 @@
   const {
     currentPrice,
     priceChangePercent,
-    priceChangeClass,
+    ticker,
     getTypeTicker,
     subscribeTicker,
   } = useTicker();

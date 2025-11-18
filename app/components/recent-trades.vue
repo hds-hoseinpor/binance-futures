@@ -51,11 +51,11 @@
         </div>
 
         <div class="max-h-[210px] overflow-y-auto lg:max-h-[152px]">
-          <div class="mt-2 space-y-1">
+          <div class="mt-2">
             <div
               v-for="(trade, index) in trades"
               :key="trade.id || index"
-              class="grid cursor-pointer grid-cols-3 gap-4 rounded px-2 py-1.5 text-13 transition-all hover:bg-gray-700/50"
+              class="grid cursor-pointer grid-cols-3 gap-4 rounded py-0.5 text-13 transition-all hover:bg-gray-700/50"
             >
               <div
                 :class="trade.isBuyerMaker ? 'text-red-400' : 'text-green-400'"

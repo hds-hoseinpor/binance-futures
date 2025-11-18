@@ -98,6 +98,8 @@
   import { colors } from "~/constants/colors";
 
   const SCROLL_THRESHOLD = 10;
+  const TIME_FRAMES = ["1m", "5m", "15m", "1h", "4h", "1d", "1w"];
+
   const TABS = [
     {
       title: "Chart",

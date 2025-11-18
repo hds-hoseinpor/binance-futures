@@ -26,6 +26,20 @@ export const getTrade = (data) => ({
   isBuyerMaker: data.m,
 });
 
+export const getTicker = (data) => ({
+  type: data.e,
+  time: data.E,
+  symbol: data.s,
+  priceChange: data.p,
+  priceChangePercent: data.P,
+  lastPrice: data.c,
+  lastQty: data.Q,
+  open: data.o,
+  high: data.h,
+  low: data.l,
+  count: data.n,
+});
+
 export const prepareCandles = (data) => data.map((kline) => getCandle(kline));
 
 export const prepareVolumes = (data) => data.map((kline) => getVolume(kline));
@@ -38,11 +52,8 @@ export const getPriceChangeSign = (change) => {
   return change >= 0 ? "+" : "";
 };
 
-export const formatPrice = (price) => {
-  return price?.toLocaleString?.("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
+export const formatPrice = (price = 0) => {
+  return Intl.NumberFormat().format(price);
 };
 
 export const formatAmount = (amount) => {

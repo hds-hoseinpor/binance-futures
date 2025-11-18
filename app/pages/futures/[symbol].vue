@@ -3,7 +3,7 @@
     <div class="col-span-1 md:col-span-2 lg:col-span-4">
       <div class="grid grid-cols-1 gap-1 lg:grid-cols-4">
         <div class="col-span-1 flex flex-1 flex-col lg:col-span-3">
-          <market-ticker-bar />
+          <market-ticker-bar :symbol="currentSymbol" />
           <TradingChart :symbol="currentSymbol" />
         </div>
 

@@ -40,8 +40,16 @@
 
       <!-- Current Price -->
       <div class="mb-1 mt-1 flex items-center justify-between px-2 py-2">
-        <span class="text-[20px] font-bold" :class="priceChangeClass">
-          ${{ formatPrice(currentPrice) }}
+        <span
+          class="flex items-center text-[20px] font-bold"
+          :class="priceChangeClass"
+        >
+          {{ formatPrice(currentPrice) }}
+          <Icon
+            :name="priceChange >= 0 ? 'mdi:arrow-up' : 'mdi:arrow-down'"
+            class="ml-1 mt-1 w-5"
+            :class="priceChangeClass"
+          />
         </span>
         <span class="text-[13px] font-semibold" :class="priceChangeClass">
           {{ getPriceChangeSign(priceChangePercent) }}
@@ -80,6 +88,7 @@
 
   const {
     currentPrice,
+    priceChange,
     priceChangePercent,
     priceChangeClass,
     getTypeTicker,

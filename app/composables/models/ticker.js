@@ -42,6 +42,7 @@ export const useTicker = () => {
 
       ticker.value = {
         ...ticker.value,
+        ...getTicker(data),
         lastPrice: realTimePrice.value,
       };
 
@@ -73,6 +74,7 @@ export const useTicker = () => {
     priceChange,
     priceChangePercent,
     priceChangeClass,
+    ticker,
 
     subscribeTicker,
     getTypeTicker,

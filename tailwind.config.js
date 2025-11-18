@@ -13,6 +13,9 @@ export default {
   theme: {
     extend: {
       colors,
+      fontFamily: {
+        sans: ["BinanceNova", "system-ui", "sans-serif"],
+      },
       fontSize: {
         11: "11px",
         12: "12px",
